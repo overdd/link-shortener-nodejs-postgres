@@ -11,7 +11,7 @@ module.exports = {
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
   ],
-  "ignorePatterns": ["node_modules/**/*", "*.json"],
+  "ignorePatterns": ["node_modules/**/*", "*.json", "src/static/**/*"],
   rules: {
     'no-console': 'off',
   },
