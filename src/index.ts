@@ -2,6 +2,7 @@ import express from "express";
 import "dotenv/config";
 import dbHandler from "./db/db.handler";
 import path from "path";
+import { isValidURL } from "./helper/helpers";
 
 const app = express();
 
@@ -22,10 +23,15 @@ app.post("/short", async (req, res) => {
     return res.status(400).json({ error: "Missing longUrl in request body" });
   }
 
-  const shortUrl = await dbHandler.addRecord(longUrl);
+  const isUrl = isValidURL(longUrl);
 
-  const shortUrlWithDomain = `http://localhost:${process.env.PORT}/${shortUrl}`;
-  return res.json({ shortUrl: shortUrlWithDomain });
+  if (isUrl) {
+    const shortUrl = await dbHandler.addRecord(longUrl);
+    const shortUrlWithDomain = `http://localhost:${process.env.PORT}/${shortUrl}`;
+    return res.json({ shortUrl: shortUrlWithDomain });
+  } else {
+    return res.status(403).json({ error: "Not a valid URL!" });
+  }
 });
 
 app.get("/:shortUrl", async (req, res) => {

@@ -7,31 +7,27 @@ async function shortenUrl() {
     return;
   }
 
-  if (isValidUrl(longUrlInput)) {
-    try {
-      const response = await fetch("/short", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ longUrl: longUrlInput }),
-      });
-      urlError.style.display = "none";
+  try {
+    const response = await fetch("/short", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ longUrl: longUrlInput }),
+    });
+    urlError.style.display = "none";
 
-      const data = await response.json();
+    const data = await response.json();
 
-      if (response.ok) {
-        const shortenedUrl = document.getElementById("shortenedUrl");
-        shortenedUrl.innerHTML = `Shortened URL: <a href="${data.shortUrl}" target="_blank">${data.shortUrl}</a>`;
-      } else {
-        alert(`Error: ${data.error}`);
-      }
-    } catch (error) {
-      console.error("Error:", error);
-      alert("An error occurred. Please try again.");
+    if (response.status === 200) {
+      const shortenedUrl = document.getElementById("shortenedUrl");
+      shortenedUrl.innerHTML = `Shortened URL: <a href="${data.shortUrl}" target="_blank">${data.shortUrl}</a>`;
+    } else {
+      urlError.style.display = "block";
     }
-  } else {
-    urlError.style.display = "block";
+  } catch (error) {
+    console.error("Error:", error);
+    alert("An error occurred. Please try again.");
   }
 }
 
@@ -42,10 +38,4 @@ function resetPlaceholder() {
   if (value !== "" && !value.startsWith("https://")) {
     input.value = "https://" + value;
   }
-}
-
-function isValidUrl(url) {
-  const urlPattern =
-    /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([/\w .-]*)*\/?$/;
-  return urlPattern.test(url);
 }
