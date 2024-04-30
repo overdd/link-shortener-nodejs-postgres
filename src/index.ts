@@ -5,9 +5,10 @@ import path from "path";
 import { isValidURL } from "./helper/helpers";
 
 const app = express();
+const PORT = process.env.PORT || 5050;
 
-app.listen(process.env.PORT, () => {
-  console.log(`Server running on http://localhost:${process.env.PORT}`);
+app.listen(PORT, () => {
+  console.log(`Server running on ${PORT}`);
 });
 app.use(express.json());
 app.use(express.static("src/static"));
