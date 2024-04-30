@@ -1,6 +1,5 @@
-require('dotenv').config();
 import { Sequelize } from "sequelize";
-
+import "dotenv";
 
 console.log(process.env.POSTGRES_USERNAME);
 console.log(process.env.POSTGRES_PASSWORD);
