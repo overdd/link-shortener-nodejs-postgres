@@ -5,6 +5,7 @@
   "main": "index.ts",
   "scripts": {
     "test": "test",
+    "build": "tsc",
     "lint": "npx eslint . && prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\"",
     "migrate": "npx ts-node src/db/migrate.ts",
     "dev": "nodemon",

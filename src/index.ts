@@ -13,7 +13,7 @@ app.use(express.json());
 app.use(express.static("src/static"));
 
 app.get("/", async (req, res) => {
-  res.sendFile(path.join(__dirname, "static", "index.html"));
+  res.sendFile(path.join(__dirname, "index.html"));
 });
 
 app.post("/short", async (req, res) => {
