@@ -7,9 +7,9 @@
     "test": "test",
     "build": "tsc",
     "lint": "npx eslint . && prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\"",
-    "migrate": "npx ts-node src/db/migrate.ts",
+    "migrate": "npx ts-node db/migrate.ts",
     "dev": "nodemon",
-    "start": "npx ts-node index.ts"
+    "start": "nodemon"
   },
   "author": "overdd",
   "license": "GNU GENERAL PUBLIC LICENSE",
