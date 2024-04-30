@@ -5,13 +5,13 @@ import path from "path";
 import { isValidURL } from "./helper/helpers";
 
 const app = express();
-const PORT = process.env.PORT || 5050;
+const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
-  console.log(`Server running on ${PORT}`);
+  console.log(`Server running on http://localhost:${PORT}`);
 });
 app.use(express.json());
-app.use(express.static("src/static"));
+app.use(express.static("static"));
 
 app.get("/", async (req, res) => {
   res.sendFile(path.join(__dirname, "index.html"));
