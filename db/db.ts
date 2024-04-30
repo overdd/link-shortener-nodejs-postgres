@@ -1,11 +1,12 @@
 import { Sequelize } from "sequelize";
 import "dotenv";
 
+const postgres_host = process.env.POSTGRES_HOST;
 console.log(process.env.POSTGRES_USERNAME);
 console.log(process.env.POSTGRES_PASSWORD);
 console.log(process.env.POSTGRES_HOST);
 console.log(process.env.POSTGRES_PORT);
-console.log(process.env);
+console.log(postgres_host);
 
 const sequelize = new Sequelize(
   "postgres",
