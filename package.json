@@ -9,7 +9,7 @@
     "lint": "npx eslint . && prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\"",
     "migrate": "npx ts-node db/migrate.ts",
     "dev": "nodemon",
-    "start": "nodemon"
+    "start": "npm i && nodemon"
   },
   "author": "overdd",
   "license": "GNU GENERAL PUBLIC LICENSE",
