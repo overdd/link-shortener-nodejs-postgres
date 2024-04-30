@@ -1,6 +1,11 @@
 import { Sequelize } from "sequelize";
 import "dotenv/config";
 
+console.log(process.env.POSTGRES_USERNAME);
+console.log(process.env.POSTGRES_PASSWORD);
+console.log(process.env.POSTGRES_HOST);
+console.log(process.env.POSTGRES_PORT);
+
 const sequelize = new Sequelize(
   "postgres",
   process.env.POSTGRES_USERNAME!,
