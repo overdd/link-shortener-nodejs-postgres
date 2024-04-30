@@ -16,6 +16,11 @@ app.get("/", async (req, res) => {
   res.sendFile(path.join(__dirname, "index.html"));
 });
 
+app.get("/healthcheck", async (req, res) => {
+ return res.status(200).json({ status: "OK" });
+});
+
+
 app.post("/short", async (req, res) => {
   const { longUrl } = req.body;
 
