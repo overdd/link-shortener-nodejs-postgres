@@ -1,5 +1,5 @@
 import { Sequelize } from "sequelize";
-
+// import "dotenv"; // disabled for a EBS deployment
 
 const postgres_host = process.env.POSTGRES_HOST;
 console.log(process.env.POSTGRES_USERNAME);
