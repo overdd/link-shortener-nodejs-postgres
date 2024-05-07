@@ -8,7 +8,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
+  console.log(`Backend server running on http://localhost:${PORT}`);
 });
 app.use(express.json());
 app.use(express.static("static"));
@@ -21,7 +21,6 @@ app.get("/healthcheck", async (req, res) => {
  return res.status(200).json({ status: "OK" });
 });
 
-
 app.post("/short", async (req, res) => {
   const { longUrl } = req.body;
 
@@ -33,7 +32,8 @@ app.post("/short", async (req, res) => {
 
   if (isUrl) {
     const shortUrl = await dbHandler.addRecord(longUrl);
-    const shortUrlWithDomain = `http://localhost:${process.env.PORT}/${shortUrl}`;
+    const fullUrl = `${req.protocol}`+'://'+`${req.get('host')}`;
+    const shortUrlWithDomain = `${fullUrl}/${shortUrl}`;
     return res.json({ shortUrl: shortUrlWithDomain });
   } else {
     return res.status(403).json({ error: "Not a valid URL!" });
