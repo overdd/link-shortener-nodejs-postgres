@@ -1,13 +1,6 @@
 import { Sequelize } from "sequelize";
-// import "dotenv"; // disabled for a EBS deployment
-
-const postgres_host = process.env.POSTGRES_HOST;
-console.log(process.env.POSTGRES_USERNAME);
-console.log(process.env.POSTGRES_PASSWORD);
-console.log(process.env.POSTGRES_HOST);
-console.log(process.env.POSTGRES_PORT);
-console.log(postgres_host);
-console.log(process.env);
+import "dotenv";
+import "dotenv/config";
 
 
 const sequelize = new Sequelize(
@@ -18,6 +11,12 @@ const sequelize = new Sequelize(
     host: process.env.POSTGRES_HOST,
     dialect: "postgres",
     port: Number(process.env.POSTGRES_PORT) || 5432,
+    dialectOptions: {
+      ssl: {
+        require: true, 
+        rejectUnauthorized: false 
+      }
+    },
   },
 );
 
