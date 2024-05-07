@@ -5,10 +5,11 @@
   "main": "index.ts",
   "scripts": {
     "test": "test",
+    "build": "tsc",
     "lint": "npx eslint . && prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\"",
-    "migrate": "npx ts-node src/db/migrate.ts",
+    "migrate": "npx ts-node db/migrate.ts",
     "dev": "nodemon",
-    "start": "npx ts-node src/index.ts"
+    "start": "npm i && nodemon"
   },
   "author": "overdd",
   "license": "GNU GENERAL PUBLIC LICENSE",

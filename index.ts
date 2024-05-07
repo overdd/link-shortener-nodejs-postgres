@@ -5,16 +5,22 @@ import path from "path";
 import { isValidURL } from "./helper/helpers";
 
 const app = express();
+const PORT = process.env.PORT || 3000;
 
-app.listen(process.env.PORT, () => {
-  console.log(`Server running on http://localhost:${process.env.PORT}`);
+app.listen(PORT, () => {
+  console.log(`Server running on http://localhost:${PORT}`);
 });
 app.use(express.json());
-app.use(express.static("src/static"));
+app.use(express.static("static"));
 
 app.get("/", async (req, res) => {
-  res.sendFile(path.join(__dirname, "static", "index.html"));
+  res.sendFile(path.join(__dirname, "index.html"));
 });
+
+app.get("/healthcheck", async (req, res) => {
+ return res.status(200).json({ status: "OK" });
+});
+
 
 app.post("/short", async (req, res) => {
   const { longUrl } = req.body;
